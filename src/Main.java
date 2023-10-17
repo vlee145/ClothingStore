@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Main extends PApplet {
     ArrayList<Clothing> clothes = new ArrayList<>();
+    int clothing;
     int width;
     boolean objectClicked;
     public void settings(){
@@ -12,6 +13,7 @@ public class Main extends PApplet {
     }
     public void setup(){
         objectClicked = false;
+        clothing = 0;
         width = 210;
         clothes.add(new Pants("Jeans", 205.99,2,3,"Blue",1,"Denim"));
         clothes.add(new Pants("Leggings", 105.99,2,1,"Black",1,"Spandex"));
@@ -39,11 +41,17 @@ public class Main extends PApplet {
         }
         if(objectClicked == true){
             clear();
+            template(whichItem(clothing, clothes));
         }
 
     }
     public void template(Clothing c){
-        rect( );
+        background(255);
+        rect(20,50,400,400);
+        fill(0);
+        textSize(30);
+        text(c.name, 460, 70);
+        rect(430,400,50,20);
     }
     public boolean ifPast(int x, int y){
         if(x+width+40 >= 700){
@@ -55,7 +63,6 @@ public class Main extends PApplet {
     }
 
     public void mouseReleased(){
-        int clothing = 0;
         for (int i = 0; i < clothes.size(); i++) {
             Clothing curr = clothes.get(i);
            if(curr.mouseReleased(mouseX, mouseY, curr.x, curr.y)){
