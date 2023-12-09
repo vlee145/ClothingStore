@@ -1,27 +1,32 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.util.ArrayList;
 
 public class Clothing {
     protected String name;
-    protected double price;
+    public double price;
     protected int size;
     protected String[] colors;
     protected String color;
     protected int quantity;
     public int x;
     public int y;
-    public Clothing(String n, double p,int s,int colors, String c, int q){
+    private PImage picture;
+    public Clothing(String n, double p,int s, String c , PImage picture){
         name = n;
         price = p;
         size = s;
-        this.colors = new String[colors];
         color = c;
-        quantity = q;
+        quantity = 1;
+        image = picture;
 
     }
     public void draw(PApplet window, int x, int y){
-       window.rect(x,y,200,200);
+        PImage resizedImage = image.copy();  // Create a copy to avoid modifying the original image
+        resizedImage.resize(200, 200);
+        window.image(resizedImage, x, y);
+       //window.image(picture);
     }
     public boolean mouseReleased(int mouseX, int mouseY, int x,int y){
         if(mouseX >= x && mouseX <= x+200){
@@ -40,6 +45,7 @@ public class Clothing {
     public void setColor(int index){
         color = colors[index];
     }
+
 
 
 

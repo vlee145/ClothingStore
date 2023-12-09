@@ -5,10 +5,10 @@ public class Cart {
     private double totalPrice;
     private double tax;
     private double shipping;
-    public Cart(ArrayList<Clothing> clothes,double t, double s){
+    public Cart(ArrayList<Clothing> clothes){
         items = clothes;
-        tax = t;
-        shipping = s;
+        tax = 5;
+        shipping = 15;
     }
 
     public double calculatePrice(ArrayList<Clothing> c) {
