@@ -12,7 +12,7 @@ public class Clothing {
     protected int quantity;
     public int x;
     public int y;
-    private PImage picture;
+    public PImage picture;
     public Clothing(String n, double p,int s, String c , PImage picture){
         name = n;
         price = p;
