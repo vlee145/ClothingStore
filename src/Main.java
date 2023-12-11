@@ -237,6 +237,38 @@ public class Main extends PApplet {
             text("X",20,20);
         }
     }
+     public void cart(ArrayList<Clothing> cartClothes){
+        int x = 100;
+        int y = 125;
+        int size = 150;
+        double totalPrice = 0;
+        clear();
+        background(255);
+        textSize(50);
+        text("Cart", 300, 50);
+        for (int i = 0; i < cartClothes.size(); i++) {
+            rect(x, y, size, size);
+            textSize(14);
+            text(cartClothes.get(i).name + " in the color " + cartClothes.get(i).color, x + size + 30, y + 20);
+            rect(550, y, 55, 30);
+            text("delete", 560, y+20);
+            text(cartClothes.get(i).price +" dollars", x + size +30,y+50);
+            text(cartClothes.get(i).quantity +" pieces", x + size + 80, y+50 );
+            text(sizes.get(cartClothes.get(i).size), x + size + 30, y + 40);
+            y = y + x + 80;
+            totalPrice += cartClothes.get(i).price * cartClothes.get(i).quantity;
+        }
+
+        fill(0);
+        textSize(40);
+        text("x", 20,40);
+        text("Total: $" + totalPrice, 200, 500);
+        //checkout button
+        rect(500, 500, 160, 50);
+        textSize(25);
+        fill(255);
+        text("Checkout", 513, 526);
+    }
 
     public void displayPage(ArrayList<Clothing> clothes) {
         int x = 40;
