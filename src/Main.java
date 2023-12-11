@@ -1,4 +1,5 @@
 
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -22,6 +23,7 @@ public class Main extends PApplet {
     public void settings(){
         size(700,600);
     }
+
     public void setup(){
         baggyJeans = loadImage("baggyJeans.png");
         flareLeggings = loadImage("flareLeggings.png");
@@ -84,6 +86,7 @@ public class Main extends PApplet {
         dress.add(new Dress("Floral", 275,2,"MultiColored",floral));
         dress.add(new Dress("Fancy", 3821,2,"Blue",fancy));
     }
+
     public void draw(){
         if(homePage == true) {
             clothes = pants;
@@ -237,7 +240,29 @@ public class Main extends PApplet {
             text("X",20,20);
         }
     }
-     public void cart(ArrayList<Clothing> cartClothes){
+
+    public void displayPage(ArrayList<Clothing> clothes) {
+        int x = 40;
+        int y = 70;
+        for (int i = 0; i < clothes.size(); i++) {
+            Clothing curr = clothes.get(i);
+            curr.x = x;
+            curr.y = y;
+            curr.draw(this, curr.x, curr.y);
+            fill(0);
+            textSize(15);
+            text(curr.name, x + 10, y + width + 10);
+            String price = Double.toString(curr.price);
+            text(price, x + 150, y + width + 10);
+            x += width;
+            if (ifPast(curr.x, curr.y)) {
+                y += width + 30;
+                x = 40;
+            }
+        }
+    }
+
+    public void cart(ArrayList<Clothing> cartClothes){
         int x = 100;
         int y = 125;
         int size = 150;
@@ -270,29 +295,7 @@ public class Main extends PApplet {
         text("Checkout", 513, 526);
     }
 
-    public void displayPage(ArrayList<Clothing> clothes) {
-        int x = 40;
-        int y = 70;
-        for (int i = 0; i < clothes.size(); i++) {
-            Clothing curr = clothes.get(i);
-            curr.x = x;
-            curr.y = y;
-            curr.draw(this, curr.x, curr.y);
-            fill(0);
-            textSize(15);
-            text(curr.name, x + 10, y + width + 10);
-            String price = Double.toString(curr.price);
-            text(price, x + 150, y + width + 10);
-            x += width;
-            if (ifPast(curr.x, curr.y)) {
-                y += width + 30;
-                x = 40;
-            }
-        }
-    }
-
-    }
-    public void template(Clothing c){
+    public void display(Clothing c, ArrayList<Clothing> clothes){
         background(255);
         PImage resizedImage = c.image.copy();  // Create a copy to avoid modifying the original image
         resizedImage.resize(400, 400);
@@ -345,13 +348,19 @@ public class Main extends PApplet {
         textSize(40);
         text("X", 20,40);
     }
+
     public boolean ifPast(int x, int y){
         if(x+width+40 >= 700){
             return true;
         }return false;
     }
+
     public Clothing whichItem(int index, ArrayList<Clothing> c){
         return c.get(index);
+    }
+
+    public void cartDelete(int clothingDeletedIndex){
+        cartClothes.remove(clothingDeletedIndex);
     }
 
     public void mouseReleased() {
@@ -523,5 +532,6 @@ public class Main extends PApplet {
             PApplet.main("Main");
         }
 }
+
 
 
