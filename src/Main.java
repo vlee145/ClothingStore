@@ -1,5 +1,4 @@
 
-
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -12,9 +11,9 @@ public class Main extends PApplet {
     ArrayList<Clothing> tops = new ArrayList<>();
     ArrayList<Clothing> shoes = new ArrayList<>();
     ArrayList<Clothing> dress = new ArrayList<>();
-    ArrayList<Clothing> accs = new ArrayList<>();
+    ArrayList<Clothing> acc = new ArrayList<>();
     PImage baggyJeans, flareLeggings, jorts, cargoPants, cargoShorts, flareJeans, hoodie, zipUp, tShirt, longSleeve, blouse, cropTop, bowlingShoes, runningShoes, highHeels, boots, sneakers, slides, bodycon, midi, maxi, mini, floral, fancy ;
-    int clothing, width, clothingDeletedIndex;
+    int clothing, width, clothingDeletedIndex, x, y;
     boolean objectClicked, homePage, cartClicked, topsPage, shoesPage, accPage, dressPage, cartDelete, checkOutPage;
     Cart cart;
     ArrayList<Clothing> cartClothes = new ArrayList<>();
@@ -50,6 +49,8 @@ public class Main extends PApplet {
         floral = loadImage("floral.png");
         fancy = loadImage("fancy.png");
         objectClicked = false;
+        x = 130;
+        y = 13;
         checkOutPage = false;
         homePage = true;
         cartClicked = false;
@@ -100,13 +101,10 @@ public class Main extends PApplet {
             text("Cart", 597, 33);
             text("LOGO", 65, 33);
             fill(0);
-            rect(130, 13, 70, 33);
-            rect(210, 13, 70, 33);
-            rect(290, 13, 70, 33);
-            rect(370, 13, 70, 33);
-            rect(450, 13, 70, 33);
+            for (int x0 = 130; x0/(70+10) <= 5; x0 += 70 + 10) {
+                rect(x0,13,70,33);
+            }
             //cart button
-
             fill(255, 0, 0);
             text("PANTS", 140, 33);
             fill(255);
@@ -125,11 +123,14 @@ public class Main extends PApplet {
                 text("Cart",597,33);
                 text("LOGO",65,33);
                 fill(0);
-                rect(130, 13, 70, 33);
-                rect(210, 13, 70, 33);
-                rect(290, 13, 70, 33);
-                rect(370, 13, 70, 33);
-                rect(450, 13, 70, 33);
+//                rect(130, 13, 70, 33);
+//                rect(210, 13, 70, 33);
+//                rect(290, 13, 70, 33);
+//                rect(370, 13, 70, 33);
+//                rect(450, 13, 70, 33);
+            for (int x0 = 130; x0/(70+10) <= 5; x0 += 70 + 10) {
+                rect(x0,13,70,33);
+            }
                 clothes = tops;
                 fill(255,0,0);
                 text("TOPS",225,33);
@@ -141,7 +142,7 @@ public class Main extends PApplet {
             } else if (shoesPage == true){
                 clear();
                 background(255);
-
+            clothes = shoes;
                 fill(0);
                 rect(580, 13, 70, 33);
                 rect(50, 13, 70, 33);
@@ -149,12 +150,9 @@ public class Main extends PApplet {
                 text("Cart",597,33);
                 text("LOGO",65,33);
                 fill(0);
-                rect(130, 13, 70, 33);
-                rect(210, 13, 70, 33);
-                rect(290, 13, 70, 33);
-                rect(370, 13, 70, 33);
-                rect(450, 13, 70, 33);
-                clothes = shoes;
+            for (int x0 = 130; x0/(70+10) <= 5; x0 += 70 + 10) {
+                rect(x0,13,70,33);
+            }
                 fill(255,0,0);
                 text("SHOES",385,33);
                 fill(255);
@@ -173,11 +171,9 @@ public class Main extends PApplet {
                 text("Cart",597,33);
                 text("LOGO",65,33);
                 fill(0);
-                rect(130, 13, 70, 33);
-                rect(210, 13, 70, 33);
-                rect(290, 13, 70, 33);
-                rect(370, 13, 70, 33);
-                rect(450, 13, 70, 33);
+            for (int x0 = 130; x0/(70+10) <= 5; x0 += 70 + 10) {
+                rect(x0,13,70,33);
+            }
 
                 fill(255,0,0);
                 text("DRESSES",296,33);
@@ -187,10 +183,9 @@ public class Main extends PApplet {
                 text("TOPS",225,33);
                 text("ACC",465,33);
             } else if (accPage == true){
-            clothes.clear();
+            clothes = acc;
                 clear();
                 background(255);
-
                 fill(0);
                 rect(580, 13, 70, 33);
                 rect(50, 13, 70, 33);
@@ -198,11 +193,9 @@ public class Main extends PApplet {
                 text("Cart",597,33);
                 text("LOGO",65,33);
                 fill(0);
-                rect(130, 13, 70, 33);
-                rect(210, 13, 70, 33);
-                rect(290, 13, 70, 33);
-                rect(370, 13, 70, 33);
-                rect(450, 13, 70, 33);
+            for (int x0 = 130; x0/(70+10) <= 5; x0 += 70 + 10) {
+                rect(x0,13,70,33);
+            }
                 fill(255,0,0);
                 textSize(15);
                 text("ACC",465,33);
@@ -213,7 +206,7 @@ public class Main extends PApplet {
                 text("DRESSES",296,33);
 
                 fill(0);
-                text("NO ITEMS FOUND", 330,250);
+                text("NO ITEMS FOUND", 270,250);
             }
 
             //clothing display
@@ -233,7 +226,7 @@ public class Main extends PApplet {
                     cart(cartClothes);
                     cartDelete = false;
                 }
-        } else if(checkOutPage == true){
+        }  if(checkOutPage == true){
                 background(255);
             text("you cannot check out because you have an invalid bank balance", 70,100);
             textSize(50);
@@ -272,16 +265,20 @@ public class Main extends PApplet {
         textSize(50);
         text("Cart", 300, 50);
         for (int i = 0; i < cartClothes.size(); i++) {
-            rect(x, y, size, size);
+            Clothing c = cartClothes.get(i);
             textSize(14);
-            text(cartClothes.get(i).name + " in the color " + cartClothes.get(i).color, x + size + 30, y + 20);
-            rect(550, y, 55, 30);
+            text(c.name + " in the color " + c.color, x + size + 30, y + 20);
+            PImage resizedImage = c.image.copy();  // Create a copy to avoid modifying the original image
+            resizedImage.resize(size, size);
+            image(resizedImage, x, y);
+            fill(255);
             text("delete", 560, y+20);
-            text(cartClothes.get(i).price +" dollars", x + size +30,y+50);
-            text(cartClothes.get(i).quantity +" pieces", x + size + 80, y+50 );
-            text(sizes.get(cartClothes.get(i).size), x + size + 30, y + 40);
+            fill(0);
+            text(c.price +" dollars", x + size +30,y+60);
+            text(c.quantity +" piece(s)", x + size + 30, y+80 );
+            text(sizes.get(c.size), x + size + 30, y + 40);
             y = y + x + 80;
-            totalPrice += cartClothes.get(i).price * cartClothes.get(i).quantity;
+            totalPrice += c.price * c.quantity;
         }
 
         fill(0);
@@ -302,10 +299,10 @@ public class Main extends PApplet {
         image(resizedImage, 20,50);
         fill(0);
         textSize(30);
-        text(c.name, 490, 70);
-        rect(450,270,70,40);
-        rect(530,270,70,40);
-        rect(610,270,70,40);
+        text(c.name, 440, 70);
+            for (int x = 450; x + 80 <= 700; x += 80) {
+                rect(x, 270, 70, 40);
+        }
         fill(0);
         rect(450,330,70,40);
         rect(610,330,70,40);
@@ -316,7 +313,7 @@ public class Main extends PApplet {
         rect(450, 130,230,40);
         fill(0);
         String price = c.price + "";
-        text(price, 475,1350);
+        text(price, 505,165);
         fill(255);
         text("+",475,360);
         text("-", 635,360);
@@ -364,63 +361,49 @@ public class Main extends PApplet {
     }
 
     public void mouseReleased() {
-        rect(130, 13, 70, 33);
-        rect(210, 13, 70, 33);
-        rect(290, 13, 70, 33);
-        rect(370, 13, 70, 33);
-        rect(450, 13, 70, 33);
         //For buttons at top for switching clothing catagory
-        if(mouseX >= 130 && mouseX <= 200){
-            if(mouseY >= 13 && mouseY <= 46){
+        if(mouseX >= 130 && mouseX <= 200 && mouseY >= 13 && mouseY <= 46){
                 homePage = true;
                 topsPage = false;
                 dressPage=false;
                 accPage=false;
                 shoesPage=false;
-
-            }
-        }
-        else if(mouseX >= 210 && mouseX <= 280){
-            if(mouseY >= 13 && mouseY <= 46){
+                checkOutPage = false;
+        } else if(mouseX >= 210 && mouseX <= 280 && mouseY >= 13 && mouseY <= 46){
                 topsPage = true;
                 homePage = false;
                 dressPage=false;
                 accPage=false;
                 shoesPage=false;
-            }
-        }
-        else if (mouseX >= 290 && mouseX <= 360) {
-            if (mouseY >= 13 && mouseY <= 80) {
+                checkOutPage = false;
+        } else if (mouseX >= 290 && mouseX <= 360 && mouseY >= 13 && mouseY <= 80) {
                 dressPage = true;
                 homePage = false;
                 topsPage = false;
                 accPage = false;
                 shoesPage = false;
-            }
-        }
-        else if(mouseX >= 370 && mouseX <= 440){
-            if(mouseY >= 13 && mouseY <= 46){
+                checkOutPage = false;
+        } else if(mouseX >= 370 && mouseX <= 440 && mouseY >= 13 && mouseY <= 46){
                 shoesPage = true;
                 homePage = false;
                 dressPage=false;
                 accPage=false;
                 topsPage=false;
-            }
-        }
-        else if(mouseX >= 450 && mouseX <= 520){
-            if(mouseY >= 13 && mouseY <= 46){
+                checkOutPage = false;
+        } else if(mouseX >= 450 && mouseX <= 520 && mouseY >= 13 && mouseY <= 46){
                 accPage = true;
                 homePage = false;
                 dressPage=false;
                 topsPage=false;
                 shoesPage=false;
-            }
-        }
-        if(mouseX >= 580 && mouseX <= 650){
-            if(mouseY >=7 && mouseY <= 40){
+                checkOutPage = false;
+        }if(objectClicked == false && cartClicked == false && checkOutPage == false && mouseX >= 580 && mouseX <= 650 && mouseY >=7 && mouseY <= 40){
+                accPage = false;
                 homePage = false;
+                dressPage=false;
+                topsPage=false;
+                shoesPage=false;
                 cartClicked = true;
-            }
         }
         //if pants page is true
          if(objectClicked == false && cartClicked == false){
@@ -438,39 +421,25 @@ public class Main extends PApplet {
             //object clicked is set to true whne they are on object page or looking at a specific clothing item
             //size button clicked
 
-            if(mouseX >= 450 && mouseX <= 520){
-                if(mouseX >= 270 && mouseY <= 310){
+            if(mouseX >= 450 && mouseX <= 520 && mouseX >= 270 && mouseY <= 310){
                     Clothing curr = clothes.get(clothing);
                     curr.size = 1;
-
-
-
-                }
-            } else if (mouseX >= 530 && mouseX <= 600){
-                if(mouseX >= 270 && mouseY <= 310){
+            } else if (mouseX >= 530 && mouseX <= 600 && mouseX >= 270 && mouseY <= 310){
                     Clothing curr = clothes.get(clothing);
                     curr.size = 2;
-
-                }
-            } else if (mouseX >= 610 && mouseX <= 680){
-                if(mouseX >= 270 && mouseY <= 310){
+            } else if (mouseX >= 610 && mouseX <= 680 && mouseX >= 270 && mouseY <= 310){
                     Clothing curr = clothes.get(clothing);
                     curr.size = 3;
-
-                }
             }
             //quantity + button clicked
             rect(450,330,70,40);
             rect(610,330,70,40);
-            if(mouseX >= 450 && mouseX <= 520){
-                if(mouseY >= 330 && mouseY <=370){
+            if(mouseX >= 450 && mouseX <= 520&&mouseY >= 330 && mouseY <=370){
                     Clothing curr = clothes.get(clothing);
                     curr.quantity+=1;
-                }
             }
             //quantity - button clicked
-            if(mouseX >= 610 && mouseX <= 680){
-                if(mouseY >= 330 && mouseY <=370){
+            if(mouseX >= 610 && mouseX <= 680 && mouseY >= 330 && mouseY <=370){
                     Clothing curr = clothes.get(clothing);
                     if(curr.quantity > 0) {
                         curr.quantity -= 1;
@@ -478,33 +447,26 @@ public class Main extends PApplet {
                     } else {
                         curr.quantity = 0;
                     }
-                }
             }
                 //add to cart button clicked
-            if (mouseX >= 450 && mouseX <= 680) {
-                if (mouseY >= 390 && mouseY <= 430) {
+            if (mouseX >= 450 && mouseX <= 680 && mouseY >= 390 && mouseY <= 430) {
                     cartClothes.add(clothes.get(clothing));
                     cart = new Cart(cartClothes);
                     System.out.println(cartClothes.get(0));
                     cartClicked = true;
                     objectClicked = false;
-                }
                 //exiting the object page and going back to homePage
-            }  if (mouseX >= 0 && mouseX <= 100) {
-                if (mouseY >= 0 && mouseY <= 100) {
+            }  if (mouseX >= 0 && mouseX <= 100 && mouseY >= 0 && mouseY <= 100) {
                   objectClicked = false;
                   homePage = true;
-                }
             }
             //on the cart Page
         } else if (cartClicked == true) {
             //exit out of cart back to object page
-            if (mouseX >= 0 && mouseX <= 100) {
-                if (mouseY >= 0 && mouseY <= 100) {
+            if (mouseX >= 0 && mouseX <= 100 && mouseY >= 0 && mouseY <= 100) {
                     cartClicked = false;
                     objectClicked = false;
                     homePage = true;
-                }
             }
             for (int y = 125; (y - 125)/180 < cartClothes.size(); y += 180) {
                 if(mouseX >= 550 && mouseX <= 660 && mouseY > y && mouseY > y + 30){
@@ -518,8 +480,9 @@ public class Main extends PApplet {
             if(cartClicked == true && mouseX >= 500 && mouseX <= 660 && mouseY >=500 && mouseY <= 550){
                 checkOutPage = true;
                 cartClicked = false;
+                System.out.println("checkout");
             }
-          } else if (checkOutPage = true){
+          } else if (checkOutPage == true){
               text("you cannot check out because you have an invalid bank balance", 70,100);
               if(mouseX>=0 && mouseX<= 100 && mouseY >=0 && mouseY<=100){
                   checkOutPage = false;
@@ -532,6 +495,5 @@ public class Main extends PApplet {
             PApplet.main("Main");
         }
 }
-
 
 
